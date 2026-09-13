@@ -36,6 +36,11 @@ class RegisterRequest(BaseModel):
         min_length=8,
         max_length=72
     )
+    pincode: Optional[str] = Field(
+        min_length=6,
+        max_length=6
+    )
+
 
     @field_validator("name", "surname")
     @classmethod

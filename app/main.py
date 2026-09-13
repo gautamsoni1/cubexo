@@ -1,5 +1,6 @@
+import logging
 from fastapi import FastAPI
-
+from app.middleware.logging import LoggingMiddleware
 from app.database.connection import (
     Base,
     engine
@@ -39,6 +40,10 @@ app = FastAPI(
     """
 )
 
+logging.basicConfig(level=logging.INFO)
+
+app.add_middleware(LoggingMiddleware)
+
 app.include_router(
     auth_router
 )
@@ -46,6 +51,8 @@ app.include_router(
 app.include_router(
     user_router
 )
+
+
 
 @app.get(
     "/",

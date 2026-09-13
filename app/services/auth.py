@@ -1,3 +1,5 @@
+from urllib import request
+
 import bcrypt
 
 from datetime import (
@@ -123,7 +125,8 @@ def register_user(
         phone=user_data.phone,
         email=user_data.email,
         password=hashed_password,
-        role="user"
+        role="user",
+        pincode=user_data.pincode
     )
 
     db.add(user)
